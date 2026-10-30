@@ -1,4 +1,7 @@
-* {
+/* =========================================
+   BAGIAN B1: Box Model yang Konsisten
+   ========================================= */
+*, *::before, *::after {
     box-sizing: border-box;
 }
 
@@ -14,11 +17,15 @@ body {
     line-height: 1.6;
 }
 
+/* =========================================
+   BAGIAN B2: Container Fluid
+   (Menggantikan width fixed agar tidak overflow di HP)
+   ========================================= */
 header,
 main,
 footer {
-    width: min(900px, 92%);
-    margin: 0 auto;
+    width: min(100% - 32px, 1100px);
+    margin-inline: auto;
 }
 
 header {
@@ -29,10 +36,13 @@ header h1 {
     margin-bottom: 8px;
 }
 
+/* =========================================
+   BAGIAN C1: Navigasi yang Boleh Membungkus
+   ========================================= */
 nav {
     display: flex;
     gap: 16px;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Agar menu turun ke bawah jika layar sempit */
     margin-top: 24px;
 }
 
@@ -55,10 +65,19 @@ h2 {
     margin-bottom: 16px;
 }
 
+/* =========================================
+   BAGIAN C2: Card yang Bisa Berubah
+   (Menggunakan article sebagai card)
+   ========================================= */
 article {
     padding: 20px;
     border: 1px solid #d1d5db;
     margin-bottom: 20px;
+    
+    /* Tambahan Flexbox untuk card */
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 260px; 
 }
 
 figure {
@@ -67,6 +86,9 @@ figure {
     border: 1px solid #d1d5db;
 }
 
+/* =========================================
+   BAGIAN B3: Gambar Harus Ikut Mengecil
+   ========================================= */
 img {
     max-width: 100%;
     height: auto;
@@ -85,4 +107,48 @@ ol {
 
 footer {
     padding: 28px 0 48px;
+}
+
+.card-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+/* =========================================
+   BAGIAN D: Media Query 
+   (Diubah dari 375px menjadi 700px sesuai saran modul)
+   ========================================= */
+@media (max-width: 700px) {
+    header {
+        padding: 24px 0;
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+
+    header p {
+        font-size: 14px;
+    }
+
+    nav {
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 14px;
+    }
+
+    section h2 {
+        font-size: 20px;
+    }
+
+    article {
+        padding: 14px;
+    }
+
+    figure {
+        padding: 10px;
+    }
 }
